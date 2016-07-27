@@ -2,17 +2,20 @@ package nodomain.freeyourgadget.gadgetbridge.devices.pebble;
 
 import java.util.List;
 
+import de.greenrobot.dao.AbstractDao;
+import de.greenrobot.dao.Property;
+import nodomain.freeyourgadget.gadgetbridge.devices.AbstractSampleProvider;
 import nodomain.freeyourgadget.gadgetbridge.devices.SampleProvider;
-import nodomain.freeyourgadget.gadgetbridge.entities.AbstractActivitySample;
 import nodomain.freeyourgadget.gadgetbridge.entities.DaoSession;
+import nodomain.freeyourgadget.gadgetbridge.entities.PebbleMisfitSample;
 import nodomain.freeyourgadget.gadgetbridge.impl.GBDevice;
 
-public class MisfitSampleProvider implements SampleProvider {
+public class MisfitSampleProvider extends AbstractSampleProvider<PebbleMisfitSample> {
 
     protected final float movementDivisor = 300f;
 
-    public MisfitSampleProvider(GBDevice device, DaoSession session) {
-
+    protected MisfitSampleProvider(GBDevice device, DaoSession session) {
+        super(device, session);
     }
 
     @Override
@@ -56,22 +59,32 @@ public class MisfitSampleProvider implements SampleProvider {
     }
 
     @Override
+    public AbstractDao<PebbleMisfitSample, ?> getSampleDao() {
+        return null;
+    }
+
+    @Override
+    protected Property getRawKindSampleProperty() {
+        return null;
+    }
+
+    @Override
+    protected Property getTimestampSampleProperty() {
+        return null;
+    }
+
+    @Override
+    protected Property getDeviceIdentifierSampleProperty() {
+        return null;
+    }
+
+    @Override
     public int fetchLatestTimestamp() {
         return 0;
     }
 
     @Override
-    public void addGBActivitySample(AbstractActivitySample activitySample) {
-
-    }
-
-    @Override
-    public void addGBActivitySamples(AbstractActivitySample[] activitySamples) {
-
-    }
-
-    @Override
-    public AbstractActivitySample createActivitySample() {
+    public PebbleMisfitSample createActivitySample() {
         return null;
     }
 

@@ -2,9 +2,9 @@ package nodomain.freeyourgadget.gadgetbridge.devices;
 
 import java.util.List;
 
-import nodomain.freeyourgadget.gadgetbridge.entities.AbstractActivitySample;
+import nodomain.freeyourgadget.gadgetbridge.entities.AbstractSample;
 
-public interface SampleProvider<T extends AbstractActivitySample> {
+public interface SampleProvider<T extends AbstractSample> {
     // TODO: these constants can all be removed
     int PROVIDER_MIBAND = 0;
     int PROVIDER_PEBBLE_MORPHEUZ = 1;
