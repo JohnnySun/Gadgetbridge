@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
+import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.R;
 import nodomain.freeyourgadget.gadgetbridge.adapter.DeviceCandidateAdapter;
 import nodomain.freeyourgadget.gadgetbridge.devices.DeviceCoordinator;
@@ -63,7 +64,11 @@ public class DiscoveryActivity extends GBActivity implements AdapterView.OnItemC
                     // continue with LE scan, if available
                     if (isScanning == Scanning.SCANNING_BT) {
                         checkAndRequestLocationPermission();
-                        startDiscovery(Scanning.SCANNING_BTLE);
+                        if (GBApplication.isRunningLollipopOrLater()) {
+                            startDiscovery(Scanning.SCANNING_NEW_BTLE);
+                        } else {
+                            startDiscovery(Scanning.SCANNING_BTLE);
+                        }
                     } else {
                         discoveryFinished();
                     }
